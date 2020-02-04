@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'listings.apps.ListingsConfig',
     'realtors.apps.RealtorsConfig',
+    'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -89,8 +90,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_realestate',
         'USER': 'root',
-        'PASSWORD': 'bermutu',
-        'HOST': '192.168.10.3',
+        'PASSWORD': 'root1234',
+        'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
             'sql_mode': 'traditional',
