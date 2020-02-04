@@ -13,6 +13,9 @@ https://docs.djangoproject.com
 - create project django : 
 - start server 	: python manage.py runserver
 
+# create admin in django
+- python manage.py createsuperuser
+
 # install mysql in django 
 - pip install mysqlclient
 - if there is error message: OSError: mysql_config not found do sudo apt-get install libmariadbclient-dev
