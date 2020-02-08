@@ -58,9 +58,14 @@ DATABASES = {
 
 # step by step create apps in django
 - create app : python manage.py startapp <nama_app>
+- edit models.py
 - edit file <project>/settings.py INSTALLED APPS tambahkan <nama_app>.apps.<nama_app_config>
+- make migration => python manage.py makemigrations <nama_app>
+- do migrate	=> python manage.py migrate
+- edit <nama_app>/admin.py
 - add file urls.py in <nama_app> and edit 
 - edit <project>/urls.py
+
 - edit <nama_app>/views.py
 
 	
