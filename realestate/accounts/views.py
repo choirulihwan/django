@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 
 # Create your views here.
+from contacts.models import Contact
+
+
 def register(request):
     if request.method == 'POST':
         # messages.error(request, 'Testing error ')
@@ -60,4 +63,9 @@ def logout(request):
     return redirect('index')
 
 def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+    user_contact = Contact.objects.order_by('-contact_date').filter(user_id=request.user.id)
+    #print(user_contact.query)
+    context = {
+        'contacts': user_contact
+    }
+    return render(request, 'accounts/dashboard.html', context)
