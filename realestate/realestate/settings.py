@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'realestate.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_realestate',
-        'USER': 'root',
-        'PASSWORD': 'root1234',
-        'HOST': 'localhost',
+        'NAME': 'xxxx',
+        'USER': 'xxxx',
+        'PASSWORD': 'xxxx',
+        'HOST': 'xxxx',
         'PORT': '3306',
         'OPTIONS': {
             'sql_mode': 'traditional',
@@ -159,3 +159,8 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
