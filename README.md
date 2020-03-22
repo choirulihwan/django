@@ -1,6 +1,7 @@
 # django
 list of django based app:
 1. Real estate App (python 3.7, mysql, django3.0)
+1. Ecommerce App (python 3.7, mysql, django3.0)
 
 # django documentation
 https://docs.djangoproject.com
@@ -10,8 +11,10 @@ https://docs.djangoproject.com
 - install pycharm
 - setting venv and interpreter
 - install django
-- create project django : 
-- start server 	: python manage.py runserver
+	+ pip install django
+	+ pip install django==1.11.4 (with version)
+- create project django : django-admin startproject <nama_project> .
+- start server 	: python manage.py runserver [port]
 
 # create admin in django
 - python manage.py createsuperuser
