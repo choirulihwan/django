@@ -21,6 +21,16 @@ class ContactForm(forms.Form):
         )
     )
 
+    phone = forms.CharField(
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Your phone number"
+            }
+        )
+    )
+
     content = forms.CharField(
         min_length=10,
         label="Your message",
@@ -37,3 +47,9 @@ class ContactForm(forms.Form):
         if not "gmail.com" in email:
             raise forms.ValidationError("Email harus gmail.com")
         return email
+
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(
+        widget=forms.PasswordInput
+    )
