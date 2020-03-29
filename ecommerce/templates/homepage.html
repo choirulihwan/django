@@ -23,7 +23,20 @@
                 {{ content }}
             </div>
         </div>
+
+        {% if request.user.is_authenticated %}
+
+            <div class="row">
+                <div class="col-xs-12">
+                    {{ premium_content }}
+                </div>
+            </div>
+
+        {% endif %}
+
     </div>
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
