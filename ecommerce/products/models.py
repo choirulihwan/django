@@ -2,6 +2,8 @@ import os
 import random
 
 from django.db import models
+from django.db.models.signals import pre_save
+from products.utils import unique_slug_generator
 
 # Create your models here.
 from django.utils import timezone
@@ -42,6 +44,7 @@ class ProductManager(models.Manager):
 
 class Product(models.Model):
     title       = models.CharField(max_length=100)
+    slug        = models.SlugField(blank=True, unique=True)
     description = models.TextField(null=True)
     price       = models.DecimalField(max_digits=20,decimal_places=2,default=0.0)
     image       = models.ImageField(upload_to=upload_image_path, null=True, blank=True)
@@ -54,5 +57,15 @@ class Product(models.Model):
 
     objects = ProductManager()
 
+    def get_absolute_url(self):
+        return '/products/{slug}'.format(slug=self.slug)
+
     def __str__(self):
         return self.title
+
+
+def product_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+pre_save.connect(product_pre_save_receiver, sender=Product)
