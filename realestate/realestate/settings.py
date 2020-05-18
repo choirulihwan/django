@@ -90,8 +90,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_realestate',
         'USER': 'root',
-        'PASSWORD': 'root1234',
-        'HOST': 'localhost',
+        'PASSWORD': 'bermutu',
+        'HOST': '192.168.10.3',
         'PORT': '3306',
         'OPTIONS': {
             'sql_mode': 'traditional',
