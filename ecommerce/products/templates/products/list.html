@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+        {% for obj in object_list %}
+             <div class="col">
+<!--            <a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a> <br/>-->
+            {% include 'products/snippets/card.html' with instance=obj %}
+             </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+<!--{'paginator': None,-->
+<!--'page_obj': None,-->
+<!--'is_paginated': False,-->
+<!--'object_list': <QuerySet [<Product: Baju>]>,-->
+<!--    'product_list': <QuerySet [<Product: Baju>]>,-->
+<!--        'view': <products.views.ProductListView object at 0x000001C74E684CF8>}-->
+<!--            {{ paginator }}-->
+<!--            {{ is_paginated }}-->
+<!--            {{ object_list }}-->
