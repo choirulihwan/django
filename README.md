@@ -3,7 +3,7 @@ list of django based app:
 1. Real estate App (python 3.7, mysql, django3.0)
 2. Ecommerce App (python 3.7, mysql, django3.0)
 3. Ecommerce2 App (python 3.7, mysql, django3.0)
-4. Notes App (django, django rest framework (DRF), cors, and react)
+4. Notes App (django, django rest framework (DRF), cors headers, channels, redis and react)
 
 # django documentation
 https://docs.djangoproject.com

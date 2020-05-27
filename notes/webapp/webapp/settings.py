@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'corsheaders',
     'rest_framework',
+    'channels',
 
     'notes',
 ]
@@ -57,7 +58,9 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = (
-    '127.0.0.1:3000'
+    "http://localhost:8000",
+    "http://localhost:3000",
+    "http://localhost:8080",
 )
 
 ROOT_URLCONF = 'webapp.urls'
@@ -78,7 +81,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'webapp.wsgi.application'
+WSGI_APPLICATION = 'webapp.wsgi.application' # http request
 
 
 # Database
@@ -129,3 +132,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+ASGI_APPLICATION = 'webapp.routing.application' # websocket request
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'HOSTS':[('127.0.0.1', 6379)]
+        },
+    },
+}
