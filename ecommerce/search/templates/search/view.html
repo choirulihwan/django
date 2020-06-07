@@ -8,11 +8,10 @@
             Results for: {{ query }}
         </div>
     {% else %}
-        <!--<div class="col-12">
-            No Search result for {{ request.GET.q }}
-        </div>-->
+
         <div class="col-12 py-3">
-            <input type="text" class="form-control" placeholder="Search.." />
+<!--            <input type="text" class="form-control" placeholder="Search.." />-->
+            {% include 'search/snippets/search-form.html' %}
         </div>
         <div class="col-12">
             <hr />
