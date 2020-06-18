@@ -1,0 +1,9 @@
+{% for child in children %}
+
+<ul class="treeview-menu">
+    <li class="active"><a href="{% url child.link|add:':list' %}">
+        <i class="{{ child.icon }}"></i> {{ child }}</a>
+    </li>
+</ul>
+
+{% endfor %}
