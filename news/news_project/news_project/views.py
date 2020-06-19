@@ -28,7 +28,7 @@ def login_page(request):
                 "form": login_form,
                 "class_body": class_body,
                 "icon_list": icon_list,
-                "title": "Login"
+                "title": "Login | DaffaNews"
             }
 
         return render(request, "auth/login.html", context)

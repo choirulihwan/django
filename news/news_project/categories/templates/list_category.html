@@ -22,12 +22,21 @@
 
 <!-- Main content -->
 <section class="content">
+    <div class="row">
+        <!-- alerts -->
+        {% include 'base/alerts.html' %}
+    </div>
 
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Categories Data</h3>
+                    {% if perms.categories.add_category %}
+                    <a href="{% url 'categories:add' %}" title="create" class="btn btn-success btn-md pull-right">
+                        <i class="fa fa-plus"></i> Create category</a>
+                    {% endif %}
+
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped">
@@ -44,11 +53,16 @@
                             <td>{{ forloop.counter }}</td>
                             <td>{{ obj }}</td>
                             <td>
+                                {% if perms.categories.change_category %}
                                 <a href="{% url 'categories:update' obj.id %}" title="edit" class="btn btn-warning btn-sm">
                                     <i class="fa fa-pencil-square-o"></i>
                                 </a>
+                                {% endif %}
+
+                                {% if perms.categories.delete_category %}
                                 <a href="{% url 'categories:delete' obj.id %}" title="delete" class="btn btn-danger btn-sm">
                                     <i class="fa fa-trash-o"></i>
+                                {% endif %}
                                 </a>
                             </td>
                         </tr>

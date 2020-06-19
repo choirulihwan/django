@@ -132,3 +132,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static", "static_root")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media_root")
+
+# added by choirul
+INSTALLED_APPS += ['debug_permissions']
