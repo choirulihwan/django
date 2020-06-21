@@ -2,7 +2,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.template.defaulttags import register
 
 from .forms import LoginForm
 from .utils import generate_sidebar
@@ -22,7 +21,10 @@ def login_page(request):
 
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect('/dashboard')
+                if request.user.is_superuser:
+                    return HttpResponseRedirect('/admin')
+                else:
+                    return HttpResponseRedirect('/dashboard')
         else:
             context = {
                 "form": login_form,

@@ -21,6 +21,8 @@ from django.urls import path, include
 from .views import login_page, dashboard_page, logout_page
 
 urlpatterns = [
+    path('tinymce/', include('tinymce.urls')),
+    path('articles/', include('articles.urls', namespace='articles')),
     path('categories/', include('categories.urls', namespace='categories')),
     path('references/', include('references.urls', namespace='references')),
     path('login/', login_page, name="login"),

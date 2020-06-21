@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'references',
     'categories',
     'profiles',
+    'articles',
 
 ]
 
@@ -112,7 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Jakarta'
 
 USE_I18N = True
 
@@ -134,4 +136,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media_root")
 
 # added by choirul
-INSTALLED_APPS += ['debug_permissions']
+INSTALLED_APPS += ['debug_permissions', 'tinymce']

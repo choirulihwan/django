@@ -39,7 +39,7 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
 
-                        {% children_tag parent %}
+                        {% children_tag parent user.groups.all.0 %}
 
                     </li>
             {% endfor %}
