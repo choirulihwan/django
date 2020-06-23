@@ -1,10 +1,13 @@
 
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from .forms import LoginForm
 from .utils import generate_sidebar
+from categories.models import Category
+from articles.models import Article
 
 def login_page(request):
     if request.user.is_authenticated:
@@ -41,13 +44,23 @@ def logout_page(request):
     return HttpResponseRedirect('/login')
 
 
+@login_required(login_url='/login')
 def dashboard_page(request):
-    if request.user.is_authenticated:
-        parent_menu = generate_sidebar(request)
-        context = {
-            "title": "Dashboard",
-            "parent_menu": parent_menu,
-        }
-        return render(request, 'dashboard.html', context=context)
-    else:
-        return HttpResponseRedirect('/login')
+    parent_menu = generate_sidebar(request)
+    context = {
+        "title": "Dashboard",
+        "parent_menu": parent_menu,
+    }
+    return render(request, 'dashboard.html', context=context)
+
+
+def portal_page(request):
+    categories = Category.objects.all()
+    articles = Article.objects.all()
+
+    context = {
+        "title": "Portal daffa news",
+        "categories": categories,
+        "articles": articles,
+    }
+    return render(request, 'portal.html', context)
