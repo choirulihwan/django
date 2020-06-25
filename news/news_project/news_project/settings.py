@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'categories',
     'profiles',
     'articles',
+    'portals',
 
 ]
 

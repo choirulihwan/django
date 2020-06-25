@@ -52,15 +52,3 @@ def dashboard_page(request):
         "parent_menu": parent_menu,
     }
     return render(request, 'dashboard.html', context=context)
-
-
-def portal_page(request):
-    categories = Category.objects.all()
-    articles = Article.objects.all()
-
-    context = {
-        "title": "Portal daffa news",
-        "categories": categories,
-        "articles": articles,
-    }
-    return render(request, 'portal.html', context)

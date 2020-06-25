@@ -65,7 +65,12 @@ def article_add_update(request, pk=None):
             content = form.cleaned_data.get('content')
             status = form.cleaned_data.get('status')
             user_input = request.user
-            image = form.cleaned_data.get('image')
+
+            if request.FILES is not None:
+                image = form.cleaned_data.get('image')
+            else:
+                image = ''
+
             if pk is None:
                 Article.objects.create(title=title, category=category, content=content,
                                        status=status, image=image, user_input=user_input)
@@ -77,7 +82,8 @@ def article_add_update(request, pk=None):
                 obj.content = content
                 obj.status = status
                 obj.user_update = request.user
-                obj.image = image
+                if image is not None:
+                    obj.image = image
                 obj.save()
 
             messages.success(request, "Article is saved sucessfully")

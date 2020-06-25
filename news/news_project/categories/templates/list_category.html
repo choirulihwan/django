@@ -44,6 +44,7 @@
                         <tr>
                             <th>No</th>
                             <th>Category</th>
+                            <th>Slug</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -52,6 +53,7 @@
                         <tr>
                             <td>{{ forloop.counter }}</td>
                             <td>{{ obj }}</td>
+                            <td>{{ obj.slug }}</td>
                             <td>
                                 {% if perms.categories.change_category %}
                                 <a href="{% url 'categories:update' obj.id %}" title="edit" class="btn btn-warning btn-sm">

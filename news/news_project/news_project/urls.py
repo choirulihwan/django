@@ -18,10 +18,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from .views import login_page, dashboard_page, logout_page, portal_page
+from .views import login_page, dashboard_page, logout_page
 
 urlpatterns = [
-    path('', portal_page, name="portal"),
+    path('', include("portals.urls"), name="portals"),
     path('tinymce/', include('tinymce.urls')),
     path('articles/', include('articles.urls', namespace='articles')),
     path('categories/', include('categories.urls', namespace='categories')),
