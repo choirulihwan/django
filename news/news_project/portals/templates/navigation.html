@@ -1,0 +1,19 @@
+<nav class="blog-pagination">
+    {% if articles.has_other_pages %}
+
+
+    {% if articles.has_previous %}
+    <a class="btn btn-outline-primary" href="?page={{ articles.previous_page_number }}">Newer</a>
+    {% else %}
+    <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+    {% endif %}
+
+    {% if articles.has_next %}
+    <a class="btn btn-outline-primary" href="?page={{ articles.next_page_number }}">Older</a>
+    {% else %}
+    <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Older</a>
+    {% endif %}
+
+
+    {% endif %}
+</nav>

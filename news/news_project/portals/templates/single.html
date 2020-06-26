@@ -1,0 +1,35 @@
+{% extends 'base_portal.html' %}
+
+{% block content %}
+
+    <div class="col-md-8 blog-main">
+        <div class="blog-post">
+            <h2 class="blog-post-title">{{ article.title }}</h2>
+            <p class="blog-post-meta">{{ article.input_date }} <a href="#">{{ article.user_input }}</a></p>
+
+            {% if article.image != '' %}
+                <img src="{{ article.image.url }}" class="rounded" alt="" width="95%" />
+            {% endif %}
+
+            <p>{{ article.content|safe }}</p>
+
+        </div><!-- /.blog-post -->
+
+        <hr />
+        <nav class="blog-pagination">
+            {% if next %}
+            <a class="btn btn-outline-primary" href="{{ next.slug }}">Newer</a>
+            {% else %}
+            <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+            {% endif %}
+
+            {% if prev %}
+            <a class="btn btn-outline-primary" href="{{ prev.slug }}">Older</a>
+            {% else %}
+            <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Older</a>
+            {% endif %}
+
+        </nav>
+    </div>
+
+{% endblock %}

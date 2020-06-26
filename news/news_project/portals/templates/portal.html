@@ -10,7 +10,7 @@
         {% for article in articles %}
         <div class="blog-post">
             <h2 class="blog-post-title"><a href="{% url 'portals:single' article.slug %}">{{ article.title }}</a></h2>
-            <p class="blog-post-meta">{{ article.input_date }} <a href="#">{{ article.user_input }}</a></p>
+            <p class="blog-post-meta">{{ article.input_date }} <a href="{% url 'portals:author' article.user_input %}">{{ article.user_input }}</a></p>
 
             {{ article.content|truncatewords:50|safe }}
             <a href="{% url 'portals:single' article.slug %}">Read More</a>
