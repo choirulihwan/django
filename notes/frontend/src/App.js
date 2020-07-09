@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {Button, Container, Row, Col} from 'reactstrap';
 
 import ListNotes from './components/ListNotes';
+import { fetchNotes, fetchNote, addNote, updateNote } from './api';
 
-var notes_dummy = [
+/*var notes_dummy = [
     {
         'id':1,
         'title': 'notes 1',
@@ -19,20 +20,32 @@ var notes_dummy = [
         'title': 'notes 3',
         'content': 'content of notes 3'
     },
-];
+];*/
 
 class App extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            notes: notes_dummy,
+            // notes: notes_dummy,
+            notes: [],
             current_note_id: 0,
             is_creating: true,
+            is_fetching: true,
         }
 
         this.handleItemClick = this.handleItemClick.bind(this);
         this.handleAddNote = this.handleAddNote.bind(this);
+        this.getData = this.getData.bind(this);
+    }
+
+    componentDidMount() {
+        this.getData();
+    }
+
+    async getData() {
+        let data = await fetchNotes();
+        this.setState({notes: data});
     }
 
     handleItemClick(id) {

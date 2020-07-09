@@ -17,4 +17,5 @@
         - import {Button, Container, Row, Col} from 'reactstrap';
     - membuat component:
         - buat folder components
+        - buat component disimpan dengan file .js
      
