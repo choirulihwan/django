@@ -7,18 +7,18 @@ import { fetchNotes, fetchNote, addNote, updateNote } from './api';
 /*var notes_dummy = [
     {
         'id':1,
-        'title': 'notes 1',
-        'content': 'content of notes 1'
+        'title': 'learn react',
+        'content': 'Learn react from zero'
     },
     {
         'id':2,
-        'title': 'notes 2',
-        'content': 'content of notes 2'
+        'title': 'learn laravel',
+        'content': 'Learn laravel from stretch'
     },
     {
         'id':3,
-        'title': 'notes 3',
-        'content': 'content of notes 3'
+        'title': 'learn django',
+        'content': 'Learn django from beginning'
     },
 ];*/
 
