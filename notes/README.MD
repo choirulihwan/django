@@ -1,5 +1,6 @@
 - Serializer: digunakan utk memformat data ke bentuk json
 - Websocket : digunakan utk realtime data processing
+- In this project, we use channels as websocket
 
 - Step by step frontend:
     - install create-react-app (npm install -g create-react-app)
