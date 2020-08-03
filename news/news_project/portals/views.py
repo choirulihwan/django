@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 from categories.models import Category
 from articles.models import Article
+from comments.forms import CommentForm
 
 
 def _paginate(request, obj):
@@ -56,6 +57,7 @@ def single_page(request, slug):
     articles = Article.objects.filter(slug__iexact=slug).first()
     prev = Article.objects.filter(category__slug__iexact=articles.category.slug,slug__gt=articles.slug).order_by('slug').first()
     next = Article.objects.filter(category__slug__iexact=articles.category.slug,slug__lt=articles.slug).order_by('-slug').first()
+    form = CommentForm(request.POST or None)
     # print(next.slug)
     context = {
         "title": articles.title,
@@ -63,5 +65,6 @@ def single_page(request, slug):
         "article": articles,
         "prev":prev,
         "next":next,
+        "form":form,
     }
     return render(request, 'single.html', context)

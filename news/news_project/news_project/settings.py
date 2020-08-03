@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'profiles',
     'articles',
     'portals',
-
+    'comments'
 ]
 
 MIDDLEWARE = [

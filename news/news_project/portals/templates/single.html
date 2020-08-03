@@ -12,10 +12,8 @@
             {% endif %}
 
             <p>{{ article.content|safe }}</p>
-
         </div><!-- /.blog-post -->
 
-        <hr />
         <nav class="blog-pagination">
             {% if next %}
             <a class="btn btn-outline-primary" href="{{ next.slug }}">Newer</a>
@@ -28,8 +26,30 @@
             {% else %}
             <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Older</a>
             {% endif %}
-
         </nav>
+
+        <hr />
+        <form role="form" method="post">
+            {% csrf_token %}
+            <div class="box-body">
+                {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+                {% endfor %}
+            </div><!-- /.box-body -->
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
     </div>
 
+{% endblock %}
+
+{% block js_script %}
+<script>
+
+</script>
 {% endblock %}
