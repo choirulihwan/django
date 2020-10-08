@@ -14,7 +14,26 @@
     <!-- Bootstrap core CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
 
-
+    <script type="text/javascript">
+        var user='{{ request.user }}';
+        console.log(user);
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+    </script>
 
     <style>
       .bd-placeholder-img {
@@ -39,7 +58,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="#">E-Commerce</a>
+        <a class="navbar-brand" href="{% url 'store' %}">E-Commerce</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
                 aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -48,15 +67,15 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'store' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <a href="#" class="btn btn-danger">Login</a>
                 <a href="{% url 'cart' %}">
-                    <img src="{% static 'images/cart.png' %}" class="img-fluid mx-2" style="height:30px;" />
+                    <img id="cart-icon" src="{% static 'images/cart.png' %}" />
                 </a>
-                <p class="text-black my-1">8</p>
+                <p id="cart-total">{{ order.get_count_order }}</p>
             </form>
         </div>
     </nav>
@@ -69,6 +88,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
     <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')
     </script>
-    <script src="/docs/4.3/dist/js/bootstrap.bundle.min.js"></script>
+<!--    <script src="/docs/4.3/dist/js/bootstrap.bundle.min.js"></script>-->
+    <script src="{% static 'js/cart.js' %}"></script>
 </body>
 </html>
