@@ -25,7 +25,7 @@ class Product(models.Model):
             url = self.image.url
         except:
             url = '/images/placeholder.png'
-        return url # pemanggila
+        return url # pemanggilan
 
 
 class Order(models.Model):
