@@ -30,9 +30,6 @@
                     <div class="form-field">
                         <input class="form-control" type="text" name="zipcode" placeholder="zipcode..">
                     </div>
-                    <div class="form-field">
-                        <input class="form-control" type="text" name="country" placeholder="country..">
-                    </div>
                 </div>
                 <hr/>
                 <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
@@ -66,6 +63,8 @@
 <script>
     console.log(user)
     var shipping = '{{ order.shipping }}';
+    var total = '{{ order.get_total_order }}';
+
     if (shipping == 'False') {
         document.getElementById('shipping-info').innerHTML = '';
     }
@@ -86,12 +85,55 @@
         document.getElementById('payment-info').classList.remove('hidden')
     });
 
-    document.getElementById('make_payment').addEventListener('click', function() {
-        submitFormData()
+    document.getElementById('make-payment').addEventListener('click', function() {
+        submitFormData();
     });
 
     function submitFormData(){
         console.log('submit form')
+        var userInfo = {
+            'name':null,
+            'email':null,
+            'total':total,
+        }
+
+        var shippingInfo = {
+            'address':null,
+            'city':null,
+            'state':null,
+            'zipcode':null,
+        }
+
+        if (shipping != 'False') {
+            shippingInfo.address = form.address.value
+            shippingInfo.city = form.city.value
+            shippingInfo.state = form.state.value
+            shippingInfo.zipcode = form.zipcode.value
+        }
+
+        if (user == 'AnonymousUser') {
+            userInfo.name = form.name.value
+            userInfo.email = form.email.value
+        }
+
+        console.log('info user', userInfo);
+        console.log('shipping info', shippingInfo);
+
+        var url = '/process_order/';
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify({'form': userInfo, 'shipping': shippingInfo}),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('sukses', data);
+            alert('Transaction completed');
+            window.location.href = "{% url 'store' %}"
+        })
     }
 </script>
 {% endblock %}

@@ -1,3 +1,4 @@
+import datetime
 import json
 
 from django.http import JsonResponse
@@ -25,13 +26,41 @@ def cart(request):
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
+        cartItems = order.get_count_order
     else:
+        try:
+            cart = json.loads(request.COOKIES['cart'])
+        except:
+            cart = {}
         items = []
-        order = {'get_total_order':0, 'get_count_order':0}
+        order = {'get_total_order':0, 'get_count_order':0, 'shipping':False}
+        cartItems = order['get_count_order']
+
+        for i in cart:
+            cartItems += cart[i]['quantity']
+
+            product = Product.objects.get(id=i)
+            total = (product.price * cart[i]['quantity'])
+
+            order['get_total_order'] = total
+            order['get_count_order'] += cart[i]['quantity']
+
+            item = {
+                'product': {
+                    'id': product.id,
+                    'name': product.name,
+                    'price': product.price,
+                    'imageUrl': product.imageUrl
+                },
+                'quantity': cart[i]['quantity'],
+                'get_total_price': total,
+            }
+            items.append(item)
 
     context = {
         "items": items,
         "order": order,
+        "cartItems": cartItems,
         "title": "Cart page"
     }
 
@@ -79,3 +108,34 @@ def updateItem(request):
 
     return JsonResponse('item was added', safe=False)
 
+
+def processOrder(request):
+    transaction_id = datetime.datetime.now().timestamp()
+    # print(request.body)
+    data = json.loads(request.body)
+
+
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        total = float(data['form']['total'])
+        order.trans_id = transaction_id
+
+        if total == order.get_total_order:
+            order.complete = True
+        order.save()
+
+        if order.shipping == True:
+            ShippingAddress.objects.create(
+                customer = customer,
+                order = order,
+                address = data['shipping']['address'],
+                city=data['shipping']['city'],
+                zipcode = data['shipping']['zipcode'],
+                state = data['shipping']['state']
+            )
+
+    else:
+        print('User is not logged in')
+
+    return JsonResponse('Payment complete!', safe=False)
