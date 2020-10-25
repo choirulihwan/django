@@ -79,7 +79,7 @@ def updateItem(request):
 
 def processOrder(request):
     transaction_id = datetime.datetime.now().timestamp()
-    print(request.body)
+    # print(request.body)
     data = json.loads(request.body)
 
     if request.user.is_authenticated:
