@@ -4,6 +4,7 @@ list of django based app:
 2. Ecommerce App (python 3.7, mysql, django3.0)
 3. Ecommerce2 App (python 3.7, mysql, django3.0) => rwid
 4. Notes App (django, django rest framework (DRF), cors headers, channels, redis and react)
+5. Authorization App () = sample for authentication and authorization
 
 # django documentation
 https://docs.djangoproject.com
