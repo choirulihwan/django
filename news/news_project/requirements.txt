@@ -14,7 +14,7 @@ Django==3.0.8
 django-cors-headers==3.4.0
 django-debug-permissions==1.0.0
 django-tinymce==3.0.2
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 hiredis==1.1.0
 hyperlink==19.0.0
 idna==2.10
